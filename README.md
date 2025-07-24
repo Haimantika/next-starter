@@ -32,6 +32,41 @@ cd saas-starter
 pnpm install
 ```
 
+## Database Setup
+
+### DigitalOcean Managed Database
+
+**Setting up Postgres DB on DigitalOcean**
+
+1. **Create a DigitalOcean Account**: Sign up at [digitalocean.com](https://digitalocean.com)
+
+2. **Create a Managed Database**:
+   - Login to DigitalOcean and navigate to **Databases**
+   - Click on **Create Database**
+   - To create a database cluster, choose a region and scroll down to choose **PostgreSQL** as the database engine.
+   ![Creating DB](./images/db.png)
+   - Select a pricing plan of your choice, and then click on the **Create Database Cluster** button to start creating the database
+   - Once the database is provisioned, it will give you details on the port, password, and host URL to connect to Postgres
+   - You can now add these in your `.env` file to connect to DigitalOcean's Managed Postgres DB
+
+5. **Deploy using App Platform**:
+   - Push your code to a GitHub repository
+   - Go to [DigitalOcean App Platform](https://cloud.digitalocean.com/apps)
+   - Click "Create App" and select your repository
+   - DigitalOcean will automatically detect the `do-app-platform.yaml` file
+   - Configure your environment variables:
+     - `AUTH_SECRET`: Generate with `openssl rand -base64 32`
+     - `STRIPE_SECRET_KEY`: Your Stripe secret key
+     - `STRIPE_WEBHOOK_SECRET`: Your Stripe webhook secret
+     - `BASE_URL`: Will be set automatically to your app URL
+     - `POSTGRES_URL`: This you will get from the DigitalOcean control panel
+
+6. **Database Configuration**: The `do-app-platform.yaml` file automatically:
+   - Creates a managed PostgreSQL database
+   - Sets up the connection string as `POSTGRES_URL`
+   - Runs migrations automatically on deployment
+
+
 ## Running Locally
 
 [Install](https://docs.stripe.com/stripe-cli) and log in to your Stripe account:
@@ -92,7 +127,29 @@ When you're ready to deploy your SaaS application to production, follow these st
 2. Set the endpoint URL to your production API route (e.g., `https://yourdomain.com/api/stripe/webhook`).
 3. Select the events you want to listen for (e.g., `checkout.session.completed`, `customer.subscription.updated`).
 
-### Deploy to Vercel
+### Deployment Options
+
+#### Option 1: Deploy to DigitalOcean App Platform (Recommended)
+
+This project includes a `do-app-platform.yaml` file for seamless deployment:
+
+1. Push your code to a GitHub repository.
+2. Go to [DigitalOcean App Platform](https://cloud.digitalocean.com/apps).
+3. Click "Create App" and select your repository.
+4. DigitalOcean will automatically detect the `do-app-platform.yaml` file and configure:
+   - Managed PostgreSQL 15 database
+   - Node.js application environment
+   - Automatic builds and deployments
+   - Environment variable management
+
+5. Configure your environment variables in the DigitalOcean dashboard:
+   - `AUTH_SECRET`: Generate with `openssl rand -base64 32`
+   - `STRIPE_SECRET_KEY`: Your Stripe production secret key
+   - `STRIPE_WEBHOOK_SECRET`: Your Stripe webhook secret
+   - `BASE_URL`: Will be set automatically to your app URL
+   - `POSTGRES_URL`: Automatically configured by DigitalOcean
+
+#### Option 2: Deploy to Vercel
 
 1. Push your code to a GitHub repository.
 2. Connect your repository to [Vercel](https://vercel.com/) and deploy it.
@@ -100,7 +157,7 @@ When you're ready to deploy your SaaS application to production, follow these st
 
 ### Add environment variables
 
-In your Vercel project settings (or during deployment), add all the necessary environment variables. Make sure to update the values for the production environment, including:
+For Vercel deployment, add all the necessary environment variables in your Vercel project settings:
 
 1. `BASE_URL`: Set this to your production domain.
 2. `STRIPE_SECRET_KEY`: Use your Stripe secret key for the production environment.
