@@ -130,7 +130,7 @@ When you're ready to deploy your SaaS application to production, follow these st
 
 ### Deployment Options
 
-#### Option 1: Deploy to DigitalOcean App Platform (Recommended)
+#### Deploy to DigitalOcean App Platform (Recommended)
 
 This project includes a `do-app-platform.yaml` file for seamless deployment:
 
@@ -150,21 +150,6 @@ This project includes a `do-app-platform.yaml` file for seamless deployment:
    - `BASE_URL`: Will be set automatically to your app URL
    - `POSTGRES_URL`: Automatically configured by DigitalOcean
 
-#### Option 2: Deploy to Vercel
-
-1. Push your code to a GitHub repository.
-2. Connect your repository to [Vercel](https://vercel.com/) and deploy it.
-3. Follow the Vercel deployment process, which will guide you through setting up your project.
-
-### Add environment variables
-
-For Vercel deployment, add all the necessary environment variables in your Vercel project settings:
-
-1. `BASE_URL`: Set this to your production domain.
-2. `STRIPE_SECRET_KEY`: Use your Stripe secret key for the production environment.
-3. `STRIPE_WEBHOOK_SECRET`: Use the webhook secret from the production webhook you created in step 1.
-4. `POSTGRES_URL`: Set this to your production database URL.
-5. `AUTH_SECRET`: Set this to a random string. `openssl rand -base64 32` will generate one.
 
 ## Other Templates
 
