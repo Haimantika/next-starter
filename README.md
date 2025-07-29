@@ -2,7 +2,7 @@
 
 This is a starter template for building a SaaS application using **Next.js** with support for authentication, Stripe integration for payments, and a dashboard for logged-in users.
 
-**Demo: [https://next-saas-start.vercel.app/](https://next-saas-start.vercel.app/)**
+**Demo: [https://orca-app-g3y29.ondigitalocean.app/](https://orca-app-g3y29.ondigitalocean.app/)**
 
 ## Features
 
@@ -19,7 +19,8 @@ This is a starter template for building a SaaS application using **Next.js** wit
 ## Tech Stack
 
 - **Framework**: [Next.js](https://nextjs.org/)
-- **Database**: [Postgres](https://www.postgresql.org/)
+- **Database**: [DigitalOcean Managed PostgreSQL Database](https://www.digitalocean.com/products/managed-databases)
+- **Deployment**: [DigitalOcean App Platform](https://www.digitalocean.com/products/app-platform)
 - **ORM**: [Drizzle](https://orm.drizzle.team/)
 - **Payments**: [Stripe](https://stripe.com/)
 - **UI Library**: [shadcn/ui](https://ui.shadcn.com/)
