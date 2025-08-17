@@ -4,6 +4,8 @@ This is a starter template for building a SaaS application using **Next.js** wit
 
 **Demo: [https://orca-app-g3y29.ondigitalocean.app/](https://orca-app-g3y29.ondigitalocean.app/)**
 
+[![Deploy to DO](https://www.deploytodo.com/do-btn-blue.svg)](https://cloud.digitalocean.com/apps/new?repo=https://github.com/Haimantika/next-starter/tree/main)
+
 ## Features
 
 - Marketing landing page (`/`) with animated Terminal element
