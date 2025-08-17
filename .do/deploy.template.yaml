@@ -31,7 +31,7 @@ spec:
           type: "SECRET"
         - key: "BASE_URL"
           value: "__APP_URL_BIND__"
-          type: "GENERATED"
+          scope: "RUN_TIME"
   databases:
     - name: db
       engine: PG
